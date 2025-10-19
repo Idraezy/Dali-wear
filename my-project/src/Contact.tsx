@@ -64,15 +64,15 @@ Message: ${message}`;
           {/* Contact Info */}
           <div className="space-y-4 lg:space-y-6">
             <div className="flex items-center gap-3">
-              <Mail size={20} className="text-black dark:text-orange-400 sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
+              <Mail size={20} className="text-[#00DA6B] sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
               <p className="text-sm sm:text-base lg:text-base">faithlawrence161@gmail.com</p>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin size={20} className="text-black dark:text-orange-400 sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
+              <MapPin size={20} className="text-[#00DA6B] sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
               <p className="text-sm sm:text-base lg:text-base">Nigeria</p>
             </div>
             <div className="flex items-center gap-3">
-              <PhoneCall size={20} className="text-black dark:text-orange-400 sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
+              <PhoneCall size={20} className="text-[#00DA6B] sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
               <p className="text-sm sm:text-base lg:text-base">+234 (0)916 428 8560</p>
             </div>
           </div>

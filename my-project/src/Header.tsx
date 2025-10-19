@@ -121,7 +121,7 @@ export default function Header() {
           </div>
 
           {/* Shopping Cart */}
-          <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:text-[#00DA6B] transition" />
+          <Link to="/cart"><ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:text-[#00DA6B] transition" /></Link>
         </div>
       </div>
 

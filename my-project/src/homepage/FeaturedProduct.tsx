@@ -26,7 +26,6 @@ import dali21 from "../assets/dali21.png";
 import dali23 from "../assets/dali23.jpg";
 import dali24 from "../assets/dali24.jpg";
 
-
 const images = [
   { src: dali1, name: "Urban Satin Vest", price: "$25.99" },
   { src: dali2, name: "New Nature", price: "$26.99" },
@@ -55,91 +54,70 @@ const images = [
 
 function FeaturedProduct() {
   const [position, setPosition] = useState(0);
-  const [autoScroll, setAutoScroll] = useState(true);
-  const [hovered, setHovered] = useState(false);
+  // const itemsPerView = 4;
 
-  const itemsPerView = 4;
-  const itemWidth = 280;
-
-  // Auto scroll every 8 seconds, pause on hover
+  // Auto slide every 5 seconds
   useEffect(() => {
-    if (!autoScroll || hovered) return;
     const interval = setInterval(() => {
       handleNext();
-    }, 6000);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [autoScroll, hovered]);
+  }, []);
 
   const handleNext = () => {
-    setPosition((prev) => (prev + itemsPerView) % images.length);
+    setPosition((prev) => (prev + 1) % images.length);
   };
 
   const handlePrev = () => {
-    setPosition(
-      (prev) => (prev - itemsPerView + images.length) % images.length
-    );
+    setPosition((prev) => (prev - 1 + images.length) % images.length);
   };
 
   return (
-    <div
-      className="bg-[#001E23] text-white relative overflow-hidden mt-10 p-5 rounded-lg group w-full"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className="bg-[#001E23] text-white relative overflow-hidden mt-10 p-5 rounded-lg w-full">
       <h2 className="text-3xl font-bold text-center mb-12">
         FEATURED PRODUCTS
       </h2>
 
       {/* Arrows */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        onClick={() => {
-          setAutoScroll(false);
-          handlePrev();
-        }}
+      <button
+        onClick={handlePrev}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full z-10"
       >
         <ChevronLeft size={28} />
-      </motion.button>
+      </button>
 
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        onClick={() => {
-          setAutoScroll(false);
-          handleNext();
-        }}
+      <button
+        onClick={handleNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full z-10"
       >
         <ChevronRight size={28} />
-      </motion.button>
+      </button>
 
       {/* Slider */}
       <div className="overflow-hidden w-full">
         <motion.div
           className="flex gap-6"
-          animate={{ x: `-${position * itemWidth}px` }}
+          animate={{ x: `-${position * 25}%` }} // 4 items at once = 25%
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           {[...images, ...images].map((item, i) => (
-            <div
+            <motion.div
               key={i}
-              className="bg-[#001A20] text-black rounded-xl shadow-md w-[300px] flex-shrink-0 overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="bg-[#001A20] rounded-xl shadow-md flex-shrink-0 w-[25%] sm:w-[50%] md:w-[33.3%] lg:w-[25%] overflow-hidden"
             >
               <img
                 src={item.src}
                 alt={item.name}
-                className="w-full h-64 object-cover"
+                className="w-full h-64 object-cover transition-transform duration-300"
               />
-              <div className="p-3">
+              <div className="p-3 text-center">
                 <p className="font-semibold text-[#00DA6B]">{item.name}</p>
                 <p className="text-sm text-[#00DA6B]/80">From Daliwear</p>
                 <p className="font-bold mt-1 text-[#001E23]">{item.price}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
