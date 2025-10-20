@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, X, Star, ShoppingCart } from "lucide-react";
+import { Search, X, Star, ShoppingCart, CircleCheckBig } from "lucide-react";
 import { Link } from "react-router-dom";
 import sales1 from "./assets/sales1.jpg";
 import sales2 from "./assets/sales2.jpg";
@@ -21,22 +21,10 @@ import pin1 from "./assets/pin1.jpg";
 import pin2 from "./assets/pin2.jpg";
 import pin3 from "./assets/pin3.jpg";
 import pin4 from "./assets/pin4.jpg";
-// import pin5 from "./assets/pin5.jpg";
-// import pin6 from "./assets/pin6.jpg";
-// import pin7 from "./assets/pin7.jpg";
-// import pin8 from "./assets/pin8.jpg";
-// import pin9 from "./assets/pin9.jpg";
-// import pin10 from "./assets/pin10.jpg";
-// import pin11 from "./assets/pin11.jpg";
-// import pin12 from "./assets/pin12.jpg";
-// import pin13 from "./assets/pin13.jpg";
-// import pin14 from "./assets/pin14.jpg";
-// import pin15 from "./assets/pin15.jpg";
-// import pin16 from "./assets/pin16.jpg";
-// import pin17 from "./assets/pin17.jpg";
-// import pin18 from "./assets/pin18.jpg";
-// import pin19 from "./assets/pin19.jpg";
-// import pin20 from "./assets/pin20.jpg";
+import pin5 from "./assets/pin5.jpg";
+import pin6 from "./assets/pin6.jpg";
+import pin7 from "./assets/pin7.jpg";
+import pin8 from "./assets/pin8.jpg";
 
 interface Product {
   id: number;
@@ -71,6 +59,7 @@ function Latest({ cart, setCart }: LatestProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewForm, setReviewForm] = useState({ name: "", rating: 5, comment: "" });
+  const [notification, setNotification] = useState<string | null>(null);
 
   const products: Product[] = [
     { id: 1, image: sales1, name: "Blue Long sleeve", price: "₦5,500", category: "Long Sleeves", description: "A beautiful and comfortable blue long sleeve perfect for any occasion." },
@@ -89,10 +78,14 @@ function Latest({ cart, setCart }: LatestProps) {
     { id: 14, image: sales14, name: "Brown Pin-down", price: "₦5,500", category: "Pin Down", description: "Stylish brown pin-down collection." },
     { id: 15, image: sales15, name: "Blue & Pink Pin-down", price: "₦11,000", category: "Pin Down", description: "Beautiful blue and pink pin-down set." },
     { id: 16, image: sales16, name: "Brown & Black Pin-down", price: "₦11,000", category: "Pin Down", description: "Premium brown and black pin-down collection." },
-    { id: 17, image: pin1, name: "Elegant Charm", price: "₦10,500", category: "Frames", description: "Elegant frames that add charm to any look." },
-    { id: 18, image: pin2, name: "Sophisticated", price: "₦11,500", category: "Frames", description: "Sophisticated frame collection for the refined taste." },
-    { id: 19, image: pin3, name: "Nature's Touch", price: "₦6,500", category: "Frames", description: "Nature-inspired frames with organic beauty." },
-    { id: 20, image: pin4, name: "Royal Experience", price: "₦13,000", category: "Frames", description: "Premium royal frames for the ultimate experience." },
+    { id: 17, image: pin1, name: "Elegant Charm", price: "₦5,500", category: "Frames", description: "Elegant frames that add charm to any look." },
+    { id: 18, image: pin8, name: "Sophisticated", price: "₦5,500", category: "Frames", description: "Sophisticated frame collection for the refined taste." },
+    { id: 19, image: pin2, name: "Nature's Touch", price: "₦5,500", category: "Frames", description: "Nature-inspired frames with organic beauty." },
+    { id: 20, image: pin3, name: "Royal Experience", price: "₦5,500", category: "Frames", description: "Premium royal frames for the ultimate experience." },
+    { id: 21, image: pin4, name: "Royal Experience", price: "₦7,000", category: "Frames", description: "Premium royal frames for the ultimate experience." },
+    { id: 22, image: pin5, name: "Royal Experience", price: "₦7,000", category: "Frames", description: "Premium royal frames for the ultimate experience." },
+    { id: 23, image: pin6, name: "Royal Experience", price: "₦7,500", category: "Frames", description: "Premium royal frames for the ultimate experience." },
+    { id: 24, image: pin7, name: "Royal Experience", price: "₦7,500", category: "Frames", description: "Premium royal frames for the ultimate experience." },
   ];
 
   const filteredProducts = products.filter((product) => {
@@ -110,6 +103,9 @@ function Latest({ cart, setCart }: LatestProps) {
     } else {
       setCart([...cart, { id: product.id, product, quantity: 1 }]);
     }
+    
+    setNotification(product.name);
+    setTimeout(() => setNotification(null), 3000);
   };
 
   const handleReviewSubmit = () => {
@@ -127,6 +123,32 @@ function Latest({ cart, setCart }: LatestProps) {
 
   return (
     <div className="mx-5 py-5 min-h-screen text-white">
+      {/* Notification Toast */}
+      {notification && (
+        <div className="fixed top-20 right-6 z-40 animate-slide-in">
+          <div className="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 font-semibold">
+            <span className="text-2xl"><CircleCheckBig className="text-white"/></span>
+            <span>{notification} added to your cart</span>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(400px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        .animate-slide-in {
+          animation: slideIn 0.3s ease-out;
+        }
+      `}</style>
+
       {/* Header */}
       <div className="flex justify-between items-center px-4 py-4 mb-5 flex-wrap gap-4">
         <p className="text-3xl font-bold">Dali Wears</p>
@@ -143,14 +165,11 @@ function Latest({ cart, setCart }: LatestProps) {
           />
         </div>
 
-        {/* Cart Icon */}
-        <Link to="/cart" className="relative cursor-pointer hover:text-[#00DA6B] transition">
-          <ShoppingCart size={28} />
-          {cart.length > 0 && (
-            <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
-              {cart.length}
-            </span>
-          )}
+        {/* Checkout Button */}
+        <Link to="/cart">
+          <button className="bg-[#00DA6B] p-2 px-5 rounded-xl text-black font-bold text-lg hover:bg-[#1d9948] transition">
+            Checkout
+          </button>
         </Link>
       </div>
 
@@ -159,12 +178,15 @@ function Latest({ cart, setCart }: LatestProps) {
         <div className="w-full lg:w-1/2">
           <p className="text-4xl lg:text-6xl font-bold mb-4">New Arrivals</p>
           <p className="text-gray-300 mb-6">
-            Numquam adipisci voluptates provident minus, animi ipsum eligendi, velit tempore
-            neque error sapiente optio perspiciatis.
+            Our New Arrivals collection brings together the freshest fashion pieces and Pinterest-inspired frames — 
+            created to help you express your style in every detail. 
+            Whether you’re updating your wardrobe or adding a personal touch to your space, 
+            each new item is carefully chosen to reflect creativity, confidence, and comfort. Explore bold colors, timeless fits, 
+            and artistic designs that tell your story. Because your style isn’t just what you wear — it’s how you live.
           </p>
-          <button className="bg-[#00DA6B] p-2 px-5 rounded-xl text-white text-xl hover:bg-[#1d9948] transition">
+          <Link to="/about"><button className="bg-[#00DA6B] p-2 px-5 rounded-xl text-white text-xl hover:bg-[#1d9948] transition">
             Learn More
-          </button>
+          </button></Link>
         </div>
         <div className="w-full lg:w-1/2">
           <img

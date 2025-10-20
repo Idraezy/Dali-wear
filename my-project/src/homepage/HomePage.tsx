@@ -15,7 +15,8 @@ function HomePage() {
             imagess
         </div>
     </div>
-    <Link to="/latest"><button className='bg-[#1ED760] p-3 rounded-3xl m-10 ml-40 text-white w-40 text-xl hover:bg-[#1d9948]'>SHOP NOW</button> </Link>
+    <Link to="/latest">
+    <button className='ml-40 m-10 px-8 py-3 bg-transparent border border-[#00DA6B] text-[#00DA6B] rounded-full font-semibold hover:bg-[#00DA6B] hover:text-white transition-all duration-300'>SHOP NOW</button> </Link>
     </div>
   )
 }

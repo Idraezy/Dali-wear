@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Trash2, Plus, Minus } from "lucide-react";
+import { Trash2, Plus, Minus, AlertCircle } from "lucide-react";
 
 interface Product {
   id: number;
@@ -26,14 +26,9 @@ function Cart({ cart, setCart }: CartProps) {
     return parseInt(price.replace(/[₦,]/g, ""), 10);
   };
 
-//   const total = cart.reduce((sum, item) => {
-//     return sum + getPriceNumber(item.product.price) * item.quantity;
-//   }, 0);
-
-const total = (cart || []).reduce((sum, item) => {
-  return sum + getPriceNumber(item.product.price) * item.quantity;
-}, 0);
-
+  const total = (cart || []).reduce((sum, item) => {
+    return sum + getPriceNumber(item.product.price) * item.quantity;
+  }, 0);
 
   const handleUpdateQuantity = (id: number, quantity: number) => {
     if (quantity < 1) {
@@ -66,11 +61,10 @@ const total = (cart || []).reduce((sum, item) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0E27] text-white px-4 sm:px-6 lg:px-20 py-10">
+    <div className="min-h-screen text-white px-4 sm:px-6 lg:px-20 py-10">
       <h1 className="text-4xl font-bold mb-10 text-center">🛒 Your Cart</h1>
 
-      {/* {cart.length === 0 ? ( */}
-      {!cart ? ( 
+      {!cart || cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20">
           <p className="text-2xl text-gray-400 mb-8">Your cart is empty</p>
           <Link to="/latest">
@@ -83,6 +77,16 @@ const total = (cart || []).reduce((sum, item) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
+            {/* Instruction Box */}
+            <div className="bg-[#002a35] border-l-4 border-[#00DA6B] p-4 md:p-6 rounded-lg mb-8 flex gap-4">
+              <AlertCircle size={24} className="text-[#00DA6B] flex-shrink-0" />
+              <div>
+                <h3 className="font-bold text-lg mb-2">Review Your Items</h3>
+                <p className="text-gray-300">After reviewing your items, please click the <span className="font-semibold text-[#00DA6B]">Checkout with WhatsApp</span> button to proceed with your purchase.</p>
+              </div>
+            </div>
+
+            {/* Cart Items List */}
             <div className="space-y-4">
               {cart.map((item) => (
                 <div

@@ -56,8 +56,8 @@ Message: ${message}`;
             Let’s talk fashion, art & frames 💚
         </p>
         <p className="text-sm sm:text-base lg:text-lg mt-2 font-semibold text-white">
-          let’s get in touch — we’d love to hear from you! <br />
-          Drop me a message below!
+          Got a question about our outfits or Pinterest frames? I’d love to hear from you — <br />whether it’s an order, a custom request, or just feedback. <br />
+          Send a message, and I’ll get back to you soon!
         </p>
 
         <div className="flex flex-col gap-8 mt-16 lg:flex-row lg:justify-between lg:mt-24 font-semibold text-black dark:text-white">
@@ -88,7 +88,7 @@ Message: ${message}`;
                   value={formData.name}
                   placeholder="Name" 
                   onChange={handleChange}
-                  className="bg-[#001E23] p-3 pr-12 rounded-2xl border  border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 focus:outline-none focus:ring-2 focus:[#00D471]"
+                  className="bg-[#001218] p-3 pr-12 rounded-2xl border  border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 focus:outline-none focus:ring-2 focus:[#00D471]"
                 />
                 <UserRound className="absolute right-4 top-1/2 -translate-y-1/2  dark:text-[#00D471] w-5 h-5 sm:w-6 sm:h-6" />
               </div>
@@ -101,7 +101,7 @@ Message: ${message}`;
                   value={formData.email}
                   placeholder="Email" 
                   onChange={handleChange}
-                  className="bg-[#001E23] p-3 pr-12 rounded-2xl border border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 focus:outline-none focus:ring-2 focus:[#00D471]"
+                  className="bg-[#001218] p-3 pr-12 rounded-2xl border border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 focus:outline-none focus:ring-2 focus:[#00D471]"
                 />
                 <Mail className="absolute right-4 top-1/2 -translate-y-1/2 dark:text-[#00D471] w-5 h-5 sm:w-6 sm:h-6" />
               </div>
@@ -114,7 +114,7 @@ Message: ${message}`;
                   placeholder="Message"
                   onChange={handleChange} 
                   rows={6}
-                  className="bg-[#001E23] p-3 pr-12 rounded-2xl border border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 resize-none focus:outline-none focus:ring-2 focus:[#00D471] sm:rows-8 lg:rows-8"
+                  className="bg-[#001218] p-3 pr-12 rounded-2xl border border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 resize-none focus:outline-none focus:ring-2 focus:[#00D471] sm:rows-8 lg:rows-8"
                 />
                 <MessageSquare className="absolute right-4 top-4 text-[#00D471] w-5 h-5 sm:w-6 sm:h-6" />
               </div>
