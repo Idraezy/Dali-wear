@@ -9,6 +9,8 @@ import Latest from './Latest';
 import Contact from './Contact';
 import Cart from './Cart';
 import About from './About';
+import ScrollToTop from "./ScrollToTop";
+
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -17,6 +19,7 @@ function App() {
     <Router>
       <div>
         {/* ✅ Pass the cart to Header */}
+        <ScrollToTop />
         <Header cart={cart} />
 
         <Routes>
