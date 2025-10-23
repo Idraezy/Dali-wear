@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Trash2, Plus, Minus, AlertCircle } from "lucide-react";
 
-interface Product {
+export interface Product {
   id: number;
   image: string;
   name: string;
@@ -10,7 +10,7 @@ interface Product {
   description?: string;
 }
 
-interface CartItem {
+export interface CartItem {
   id: number;
   product: Product;
   quantity: number;
@@ -18,7 +18,8 @@ interface CartItem {
 
 interface CartProps {
   cart: CartItem[];
-  setCart: (cart: CartItem[]) => void;
+  setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  // setCart: (cart: CartItem[]) => void;
 }
 
 function Cart({ cart, setCart }: CartProps) {

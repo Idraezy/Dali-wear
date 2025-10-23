@@ -3,29 +3,28 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
 
-import dali1 from "../assets/dali1.png";
+import dali1 from "../assets/dali1.jpg";
 import dali2 from "../assets/dali2.png";
 import dali3 from "../assets/dali3.png";
 import dali4 from "../assets/dali4.png";
-import dali5 from "../assets/dali5.png";
-import dali6 from "../assets/dali6.png";
-import dali7 from "../assets/dali7.png";
+import dali5 from "../assets/dali5.jpg";
+import dali6 from "../assets/dali6.jpg";
+import dali7 from "../assets/dali7.jpg";
 import dali8 from "../assets/dali8.png";
-import dali9 from "../assets/dali9.png";
+import dali9 from "../assets/dali9.jpg";
 import dali10 from "../assets/dali10.png";
 import dali11 from "../assets/dali11.png";
-import dali12 from "../assets/dali12.png";
+import dali12 from "../assets/dali12.jpeg";
 import dali13 from "../assets/dali13.png";
 import dali14 from "../assets/dali14.png";
 import dali15 from "../assets/dali15.png";
-import dali16 from "../assets/dali16.png";
+import dali16 from "../assets/dali16.jpg";
 import dali17 from "../assets/dali17.png";
-import dali18 from "../assets/dali18.png";
-import dali19 from "../assets/dali19.png";
-import dali20 from "../assets/dali20.png";
-import dali21 from "../assets/dali21.png";
-import dali23 from "../assets/dali23.jpg";
-import dali24 from "../assets/dali24.jpg";
+import dali18 from "../assets/dali18.jpeg";
+import dali19 from "../assets/dali19.jpg";
+import dali20 from "../assets/dali20.jpg";
+
+
 
 interface Product {
   src: string;
@@ -34,32 +33,31 @@ interface Product {
 }
 
 const images: Product[] = [
-  { src: dali1, name: "Urban Satin Vest", price: "₦5,500" },
-  { src: dali2, name: "New Nature", price: "₦5,800" },
-  { src: dali3, name: "Sleek Beauty", price: "₦6,200" },
-  { src: dali4, name: "Bold Streetwear", price: "₦6,500" },
-  { src: dali5, name: "Soft Glam", price: "₦4,800" },
-  { src: dali6, name: "Classic Fit", price: "₦5,900" },
-  { src: dali7, name: "White Dream", price: "₦5,200" },
-  { src: dali8, name: "Midnight Cool", price: "₦5,700" },
-  { src: dali9, name: "Luxury Mode", price: "₦6,900" },
-  { src: dali10, name: "Urban Chill", price: "₦6,200" },
-  { src: dali11, name: "Soft Vintage", price: "₦7,300" },
-  { src: dali12, name: "Nature Flow", price: "₦6,400" },
-  { src: dali13, name: "Glam Mood", price: "₦5,500" },
-  { src: dali14, name: "Tender Flow", price: "₦6,500" },
-  { src: dali15, name: "Bright Dawn", price: "₦6,200" },
-  { src: dali16, name: "Aesthetic Mood", price: "₦6,700" },
-  { src: dali17, name: "Royal Chill", price: "₦7,900" },
-  { src: dali18, name: "Street Edge", price: "₦5,700" },
-  { src: dali19, name: "Pastel Charm", price: "₦5,000" },
-  { src: dali20, name: "Cozy Mode", price: "₦5,500" },
-  { src: dali21, name: "Soft Classic", price: "₦7,100" },
-  { src: dali23, name: "Elite Collection", price: "₦7,100" },
-  { src: dali24, name: "Premium Style", price: "₦7,100" },
-];
+  { src: dali1, name: "Maxi Gown & Basic Top", price: "₦9,500" },
+  { src: dali2, name: "New Nature", price: "₦4,500" },
+  { src: dali3, name: "Blue Basic Top", price: "₦4,500" },
+  { src: dali4, name: "Maxi Gown", price: "₦6,000" },
+  { src: dali5, name: "Black Basic Top", price: "₦4,500" },
+  { src: dali6, name: "Maxi gown & Basic Top", price: "₦9,500" },
+  { src: dali7, name: "Pink Basic Top", price: "₦4,500" },
+  { src: dali8, name: "Brown Long-sleeve", price: "₦5,500" },
+  { src: dali9, name: "Black Basic Top", price: "₦4,500" },
+  { src: dali10, name: "Black Long-sleeve", price: "₦5,500" },
+  { src: dali11, name: "Blue Long-sleeve", price: "₦5,500" },
+  { src: dali12, name: "Asymmetrical Top", price: "₦6,000" },
+  { src: dali13, name: "Black Basic Top", price: "₦4,500" },
+  { src: dali14, name: "Black Pin-down Top", price: "₦5,500" },
+  { src: dali15, name: "Blue Basic Top", price: "₦4,500" },
+  { src: dali16, name: "Red Maxi Gown", price: "₦5,000" },
+  { src: dali17, name: "Pink Pin-down", price: "₦5,500" },
+  { src: dali18, name: "Maxi Gown", price: "₦5,000" },
+  { src: dali19, name: "White Basic Top", price: "₦4,500" },
+  { src: dali20, name: "Pink Basic Top", price: "₦4,500" },
 
-function FeaturedProduct() {
+]
+  
+
+function FeaturedProduct () {
   const [position, setPosition] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(4);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -185,10 +183,10 @@ function FeaturedProduct() {
                     animate={{ opacity: hoveredIndex === i ? 1 : 0 }}
                   >
                     <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
-                      <button className="bg-[#00DA6B] text-[#001E23] px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#00FF7F] transition-colors">
+                      <Link to="/latest"><button className="bg-[#00DA6B] text-[#001E23] px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#00FF7F] transition-colors">
                         <ShoppingBag size={16} />
                         Add to Cart
-                      </button>
+                      </button> </Link>
                     </div>
                   </motion.div>
 
@@ -248,9 +246,9 @@ function FeaturedProduct() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.8 }}
       >
-        <Link to="/latest"><button className="bg-[#00DA6B] hover:bg-[#00FF7F] text-[#001E23] font-bold px-8 py-3 rounded-full text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-[#00DA6B]/50">
+        <a href="/latest"><button className="bg-[#00DA6B] hover:bg-[#00FF7F] text-[#001E23] font-bold px-8 py-3 rounded-full text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-[#00DA6B]/50">
           View All Products
-        </button></Link>
+        </button></a>
       </motion.div>
     </div>
   );

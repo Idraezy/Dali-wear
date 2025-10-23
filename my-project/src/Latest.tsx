@@ -25,6 +25,7 @@ import pin5 from "./assets/pin5.jpg";
 import pin6 from "./assets/pin6.jpg";
 import pin7 from "./assets/pin7.jpg";
 import pin8 from "./assets/pin8.jpg";
+import dali5 from "./assets/dali5.jpg"
 
 interface Product {
   id: number;
@@ -184,13 +185,13 @@ function Latest({ cart, setCart }: LatestProps) {
             each new item is carefully chosen to reflect creativity, confidence, and comfort. Explore bold colors, timeless fits, 
             and artistic designs that tell your story. Because your style isn’t just what you wear — it’s how you live.
           </p>
-          <Link to="/about"><button className="bg-[#00DA6B] p-2 px-5 rounded-xl text-white text-xl hover:bg-[#1d9948] transition">
+          <a href="/about"><button className="bg-[#00DA6B] p-2 px-5 rounded-xl text-white text-xl hover:bg-[#1d9948] transition">
             Learn More
-          </button></Link>
+          </button></a>
         </div>
         <div className="w-full lg:w-1/2">
           <img
-            src={sales1}
+            src={dali5}
             alt="New Arrival"
             className="w-full h-60 object-cover rounded-xl hover:scale-105 transition-transform duration-300"
           />

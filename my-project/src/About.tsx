@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import profileImage from "./assets/profileImage.jpg";
 import { Heart, ShoppingBag, Palette } from "lucide-react";
 
@@ -220,17 +219,17 @@ export default function About() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/latest">
+              <a href="/latest">
                 <button className="px-8 py-4 bg-[#001E23] text-[#00DD75] font-bold rounded-lg hover:bg-opacity-90 transition text-lg border-2 border-[#001E23]">
                   Shop Now
                 </button>
-              </Link>
+              </a>
 
-              <Link to="/contact">
+              <a href="/contact">
                 <button className="px-8 py-4 bg-[#001E23] text-[#00DD75] font-bold rounded-lg hover:bg-opacity-90 transition text-lg border-2 border-[#001E23]">
                   Get in Touch
                 </button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

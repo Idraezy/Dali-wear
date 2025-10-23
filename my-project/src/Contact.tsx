@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent } from 'react';
-import { Mail, MapPin, PhoneCall, UserRound, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, PhoneCall, UserRound, MessageSquare, Send } from 'lucide-react';
+import { motion } from 'framer-motion';
 import React from 'react';
 
 interface FormData {
@@ -32,9 +33,9 @@ function Contact() {
       return;
     }
 
-    const fullMessage = `Hello Dali-Wears! 👋
+    const fullMessage = `Hello Dali Wears! 👋
 
-You have a new message from your website:
+I'm reaching out from your website:
 
 Name: ${name}
 Email: ${email}
@@ -44,92 +45,247 @@ Message: ${message}`;
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     window.open(whatsappURL, "_blank");
+    
+    // Reset form
+    setFormData({ name: "", email: "", message: "" });
+  };
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" },
+    viewport: { once: true, amount: 0.3 },
   };
 
   return (
-    <div>
-      <div className="mt-24 px-6 sm:mt-28 md:mt-32 lg:mt-36 lg:px-20 mb-20">
-        <div className="text-base sm:text-lg font-semibold">
-          Hi <span className="inline-block animate-wave origin-bottom-left">✋</span>
-        </div>
-        <p className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl text-[#00DA6B]">
-            Let’s talk fashion, art & frames 💚
-        </p>
-        <p className="text-sm sm:text-base lg:text-lg mt-2 font-semibold text-white">
-          Got a question about our outfits or Pinterest frames? I’d love to hear from you — <br />whether it’s an order, a custom request, or just feedback. <br />
-          Send a message, and I’ll get back to you soon!
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-[#001E23] via-[#002A35] to-[#001E23] py-20 px-4 sm:px-6 lg:px-20">
+      {/* Hero Section */}
+      <motion.div
+        className="max-w-6xl mx-auto mb-16"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#00DA6B] to-[#00FF7F] bg-clip-text text-transparent">
+            Let's Connect
+          </h1>
+          <p className="text-gray-400 text-base sm:text-lg md:text-xl max-w-3xl mx-auto">
+            Have questions about our fashion pieces or Pinterest frames? We'd love to hear from you! Whether it's about placing an order, requesting a custom design, or simply sharing feedback—drop us a message and we'll get back to you promptly.
+          </p>
+        </motion.div>
 
-        <div className="flex flex-col gap-8 mt-16 lg:flex-row lg:justify-between lg:mt-24 font-semibold text-black dark:text-white">
-          {/* Contact Info */}
-          <div className="space-y-4 lg:space-y-6">
-            <div className="flex items-center gap-3">
-              <Mail size={20} className="text-[#00DA6B] sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
-              <p className="text-sm sm:text-base lg:text-base">faithlawrence161@gmail.com</p>
+        {/* Decorative Line */}
+        <motion.div
+          className="w-32 h-1 bg-gradient-to-r from-[#00DA6B] to-transparent mx-auto mt-8"
+          initial={{ width: 0 }}
+          animate={{ width: 128 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        />
+      </motion.div>
+
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left Side - Contact Information */}
+          <motion.div
+            className="space-y-8"
+            {...fadeInUp}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-[#00DA6B]">
+                Get In Touch
+              </h2>
+              <p className="text-gray-400 mb-8 leading-relaxed">
+                Reach out to us through any of the channels below. We're here to assist you with all your fashion needs and answer any questions you may have about our products.
+              </p>
             </div>
-            <div className="flex items-center gap-3">
-              <MapPin size={20} className="text-[#00DA6B] sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
-              <p className="text-sm sm:text-base lg:text-base">Nigeria</p>
+
+            {/* Contact Cards */}
+            <motion.div
+              className="space-y-6"
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.1 }
+                }
+              }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {[
+                { icon: Mail, label: "Email", value: "faithlawrence161@gmail.com", href: "mailto:faithlawrence161@gmail.com" },
+                { icon: PhoneCall, label: "Phone", value: "+234 (0)916 428 8560", href: "tel:+2349164288560" },
+                { icon: MapPin, label: "Location", value: "Nigeria", href: null },
+              ].map((item, index) => (
+                <motion.a
+                  key={index}
+                  href={item.href || undefined}
+                  target={item.href ? "_blank" : undefined}
+                  rel={item.href ? "noopener noreferrer" : undefined}
+                  className={`flex items-start gap-4 p-6 bg-[#002A35] rounded-2xl border border-[#00DA6B] border-opacity-20 hover:border-opacity-100 transition-all duration-300 ${item.href ? 'cursor-pointer hover:scale-105' : ''}`}
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    show: { opacity: 1, x: 0 }
+                  }}
+                  whileHover={item.href ? { y: -5 } : {}}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#00DA6B] bg-opacity-20 rounded-full flex items-center justify-center">
+                    <item.icon className="text-[#00DA6B]" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">{item.label}</h3>
+                    <p className="text-gray-400 text-sm break-words">{item.value}</p>
+                  </div>
+                </motion.a>
+              ))}
+            </motion.div>
+
+            {/* Business Hours */}
+            <motion.div
+              className="p-6 bg-gradient-to-br from-[#00DA6B] to-[#00AA55] rounded-2xl"
+              {...fadeInUp}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              <h3 className="font-bold text-[#001] mb-3 text-lg">
+                Delivery Hours
+              </h3>
+              <div className="space-y-2 text-[#001] text-sm">
+                <p className="flex justify-between">
+                  <span className="font-medium">Monday - Friday</span>
+                  <span>9:00 AM - 6:00 PM</span>
+                </p>
+                <p className="flex justify-between">
+                  <span className="font-medium">Saturday</span>
+                  <span>10:00 AM - 4:00 PM</span>
+                </p>
+                <p className="flex justify-between">
+                  <span className="font-medium">Sunday</span>
+                  <span>Closed</span>
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side - Contact Form */}
+          <motion.div
+            {...fadeInUp}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <div className="bg-[#002A35] p-8 sm:p-10 rounded-3xl border border-[#00DA6B] border-opacity-30 shadow-2xl">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[#00DA6B]">
+                Send Us a Message
+              </h2>
+
+              <form className="space-y-6" onSubmit={handleSend}>
+                {/* Name Input */}
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">
+                    Your Name
+                  </label>
+                  <input 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    placeholder="Idara Etim" 
+                    onChange={handleChange}
+                    className="bg-[#002B35] p-4 pr-12 rounded-xl border border-[#00DA6B] border-opacity-30 w-full text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00DA6B] focus:border-transparent transition-all"
+                  />
+                  <UserRound className="absolute right-4 bottom-4 text-[#00DA6B] w-5 h-5" />
+                </motion.div>
+
+                {/* Email Input */}
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">
+                    Email Address
+                  </label>
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    placeholder="idraezynoks@gmail.com" 
+                    onChange={handleChange}
+                    className="bg-[#002B35] p-4 pr-12 rounded-xl border border-[#00DA6B] border-opacity-30 w-full text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00DA6B] focus:border-transparent transition-all"
+                  />
+                  <Mail className="absolute right-4 bottom-4 text-[#00DA6B] w-5 h-5" />
+                </motion.div>
+
+                {/* Message Textarea */}
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label className="block text-sm font-semibold text-gray-300 mb-2">
+                    Your Message
+                  </label>
+                  <textarea 
+                    name="message"
+                    value={formData.message}
+                    placeholder="Tell us what you're looking for..."
+                    onChange={handleChange} 
+                    rows={5}
+                    className="bg-[#002B35] p-4 pr-12 rounded-xl border border-[#00DA6B] border-opacity-30 w-full text-white placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-[#00DA6B] focus:border-transparent transition-all"
+                  />
+                  <MessageSquare className="absolute right-4 top-14 text-[#00DA6B] w-5 h-5" />
+                </motion.div>
+
+                {/* Submit Button */}
+                <motion.button 
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-[#00DA6B] to-[#00FF7F] hover:from-[#00FF7F] hover:to-[#00DA6B] text-[#001E23] font-bold p-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[#00DA6B]/50"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Send Message
+                  <Send size={20} />
+                </motion.button>
+              </form>
             </div>
-            <div className="flex items-center gap-3">
-              <PhoneCall size={20} className="text-[#00DA6B] sm:w-6 sm:h-6 lg:w-6 lg:h-6 flex-shrink-0" />
-              <p className="text-sm sm:text-base lg:text-base">+234 (0)916 428 8560</p>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="w-full lg:w-1/2">
-            <form className="space-y-4 sm:space-y-5" onSubmit={handleSend}>
-              {/* Name Input */}
-              <div className="relative">
-                <input 
-                  type="text" 
-                  name="name"
-                  value={formData.name}
-                  placeholder="Name" 
-                  onChange={handleChange}
-                  className="bg-[#001218] p-3 pr-12 rounded-2xl border  border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 focus:outline-none focus:ring-2 focus:[#00D471]"
-                />
-                <UserRound className="absolute right-4 top-1/2 -translate-y-1/2  dark:text-[#00D471] w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-
-              {/* Email Input */}
-              <div className="relative">
-                <input 
-                  type="email" 
-                  name="email"
-                  value={formData.email}
-                  placeholder="Email" 
-                  onChange={handleChange}
-                  className="bg-[#001218] p-3 pr-12 rounded-2xl border border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 focus:outline-none focus:ring-2 focus:[#00D471]"
-                />
-                <Mail className="absolute right-4 top-1/2 -translate-y-1/2 dark:text-[#00D471] w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-
-              {/* Message Textarea */}
-              <div className="relative">
-                <textarea 
-                  name="message"
-                  value={formData.message}
-                  placeholder="Message"
-                  onChange={handleChange} 
-                  rows={6}
-                  className="bg-[#001218] p-3 pr-12 rounded-2xl border border-[#00D471] w-full text-sm sm:text-base sm:p-4 sm:pr-14 resize-none focus:outline-none focus:ring-2 focus:[#00D471] sm:rows-8 lg:rows-8"
-                />
-                <MessageSquare className="absolute right-4 top-4 text-[#00D471] w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-
-              {/* Submit Button */}
-              <button 
-                type="submit"
-                className="w-full bg-[#00D471] hover:bg-[#1d9948] text-white font-semibold p-3 rounded-2xl transition-all duration-300 text-sm sm:text-base sm:p-4"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Bottom CTA */}
+      <motion.div
+        className="max-w-6xl mx-auto mt-20 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <p className="text-gray-400 mb-4">
+          Prefer to shop first? Check out our latest collection!
+        </p>
+        <a
+          href="/latest"
+          className="inline-block px-8 py-3 bg-[#002A35] border-2 border-[#00DA6B] text-[#00DA6B] font-bold rounded-full hover:bg-[#00DA6B] hover:text-[#001E23] transition-all duration-300"
+        >
+          Browse Our Shop
+        </a>
+      </motion.div>
     </div>
   );
 }
