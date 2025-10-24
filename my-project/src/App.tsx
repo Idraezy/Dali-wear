@@ -61,7 +61,6 @@ import { useState } from 'react';
 import './App.css';
 import Header from './Header';
 import HomePage from './homepage/HomePage';
-import FeaturedProduct from './homepage/FeaturedProduct';
 import Footer from './Footer';
 import Latest from './Latest';
 import Contact from './Contact';
@@ -85,7 +84,6 @@ function App() {
             element={
               <>
                 <HomePage />
-                <FeaturedProduct />
               </>
             }
           />

@@ -8,6 +8,7 @@ import home4 from "../assets/home4.jpeg";
 import home5 from "../assets/home5.jpeg";
 import home6 from "../assets/home6.jpg";
 import home7 from "../assets/home7.jpg";
+import FeaturedProduct from "./FeaturedProduct";
 
 function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -155,6 +156,7 @@ function HomePage() {
           ))}
         </motion.div>
       </div>
+      <FeaturedProduct/>
     </div>
   );
 }
