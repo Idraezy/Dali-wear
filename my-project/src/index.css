@@ -6,7 +6,7 @@ body {
   @apply bg-[#001218] text-white;
 }
 
-
+@import "tailwindcss";
 
 
 /* :root {
